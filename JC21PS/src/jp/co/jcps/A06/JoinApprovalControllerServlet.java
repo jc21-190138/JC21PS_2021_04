@@ -51,7 +51,7 @@ public class JoinApprovalControllerServlet extends HttpServlet {
 		 * ヒント
 		 * ログインユーザーが部長を務める部活への登録申請を表示する画面。
 		 */
-
+		String sql  = "SELECT user_name FROM mst_user WHERE mst_user.user_id = trn_join_request.user_id AND mst_club.club_id = leaderClubId;";
 
 		// DB接続を初期化
 		DBConnection db = new DBConnection();

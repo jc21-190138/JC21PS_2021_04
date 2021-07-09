@@ -9,7 +9,7 @@ import java.util.List;
  */
 public class ParticipantListBean implements Serializable {
 
-	// 活動名
+	// 活動名a
 	private String activityName;
 	// 参加者リスト
 	private List<String> participantList;

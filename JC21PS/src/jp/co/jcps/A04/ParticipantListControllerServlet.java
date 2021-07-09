@@ -33,7 +33,7 @@ public class ParticipantListControllerServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// 共通チェック
+		// 共通チェックa
 		if (!CommonCheck.existSession(request)) {
 			// セッションが切れてる場合はログイン画面に遷移
 			request.getRequestDispatcher("/Login").forward(request, response);
@@ -41,15 +41,15 @@ public class ParticipantListControllerServlet extends HttpServlet {
 
 		// リクエストパラメーターから活動IDを取得する
 		// TODO: リクエストから遷移元でクリックされた活動IDを取得できるように44行目を変更しなさい。
-		String activityId = "";
+		String activityId = request.getParameter("activity_id");
 
 		// TODO: データベースから必要な情報を取得するためのSQL文を完成させなさい。
-		String sql = "SELECT ";
+		String sql = "SELECT trn_activity.activity_name,mst_user.user_name FROM mst_user,trn_activity WHERE trn_activity.activity_id = activityId;";
 
 		// SQLに埋め込むパラメータリストを定義
 		List<String> paramList = new ArrayList<String>();
 		// TODO: SQLに埋め込む値を設定しなさい。
-		
+		paramList.add(activityId);
 
 		// DB接続を初期化
 		DBConnection db = new DBConnection();
@@ -72,8 +72,8 @@ public class ParticipantListControllerServlet extends HttpServlet {
 				DBから取得した情報はResultSetクラスのgetString()メソッドで取得する。
 				getStringメソッドの引数は取得したいカラム名を文字列で指定する。
 				 */
-
-
+				bean.setActivityName(rs.getString(activityId));
+				bean.addParticipantList(rs.getString(activityId));
 			}
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
