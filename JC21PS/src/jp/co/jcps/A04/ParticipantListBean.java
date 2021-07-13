@@ -5,17 +5,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * 参加者一覧画面のBean
+ * 参加者一覧画面の
  */
 public class ParticipantListBean implements Serializable {
 
-	// 活動名a
+	// 活動
+
 	private String activityName;
-	// 参加者リスト
+	// 参加者
 	private List<String> participantList;
 
 	/**
-	 * コンストラクタ
+	 * コンストラク
 	 *
 	 */
 	public ParticipantListBean() {
